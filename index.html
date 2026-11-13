@@ -155,7 +155,7 @@ footer{padding:80px 0 40px}.lc{font-size:clamp(60px,15vw,190px);font-weight:800;
 .pimg{position:absolute;top:0;right:0;bottom:0;left:0;background:var(--ph) 50% 0/cover no-repeat}.portrait::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(transparent 40%,#050505e8 100%)}.ph{display:flex;gap:14px;flex-wrap:wrap;margin:-30px 0 50px;font-size:19px}.ph a{border:1px solid #3a3735;border-radius:99px;padding:14px 26px}.pol i{background:var(--ph) 50% 15%/cover!important}.pol div:nth-child(2) i{background-position:50% 40%!important}.pol div:nth-child(3) i{background-position:40% 70%!important}
 </style>
 <style>:root{--u0:url("assets/u0.jpg");--u1:url("assets/u1.jpg");--u2:url("assets/u2.jpg");--u4:url("assets/u4.jpg");--u5:url("assets/u5.jpg");--u6:url("assets/u6.jpg");--u7:url("assets/u7.jpg");--u10:url("assets/u10.jpg");--ph:url("assets/u0.jpg");--n0:url("assets/6f1ffb4815.jpg");--n1:url("assets/4f082f44fe.jpg");}</style>
-<style>:root{--c0:url("assets/1602a12172.jpg");--c1:url("assets/abcb43c8af.jpg");--c3:url("assets/f2fb6f9b48.jpg");}
+<style>:root{--c0:url("assets/1602a12172.jpg");--c1:url("assets/abcb43c8af.jpg");}
 .rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 22px 20px;margin:0 -22px}.rail::-webkit-scrollbar{display:none}
 .rail .vc{flex:0 0 min(68vw,300px);scroll-snap-align:start}.rail .cap b{font-size:20px}.vc video{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover}.vc .cap small{display:block;color:#c9c2b6;margin-top:6px;font-size:13px;line-height:1.35}
 .gold-wrap{position:relative;display:grid;place-items:center;margin:10px 0 34px}.gold-wrap::before{content:"";position:absolute;width:80%;aspect-ratio:1;background:radial-gradient(circle,#ff8a3d55,transparent 65%);filter:blur(12px)}
@@ -460,19 +460,20 @@ const C={
  brands:["TikTok","Instagram","YouTube","Facebook","عتب • 3TB"],
  // t=العنوان h=سطر وصف v=مشاهدات l=لايكات u=رابط img/pv=الغلاف
  vids:[
-  {t:["Transitions","انتقالات"],h:["A cinematic transition.","انتقال سينمائي."],v:["",""],l:["",""],u:"assets/tr04.mp4",pv:"tr"},
+  {t:["Transitions","انتقالات"],h:["A cinematic transition.","انتقال سينمائي."],v:["",""],l:["",""],u:"assets/pend4.mp4",pv:"tr",po:"assets/pend4.jpg"},
   {t:["Skincare","عناية بالبشرة"],h:["A vitamin C jar and a ski jump.","من علبة فيتامين C لقفزة تزلج."],v:["1.67M","1.67 مليون"],l:["",""],u:"https://vt.tiktok.com/ZSpMXCbBR/",pv:"garnier"},
   {t:["Fragrance","عطور"],h:["",""],v:["515K","515 ألف"],l:["78K","78 ألف"],u:"https://vt.tiktok.com/ZSpM461vC/",img:"c1"},
   {t:["Beauty","تجميل"],h:["A beauty cream, then a cut into racing cars.","كريم تجميل ثم فجأة… سباق سيارات."],v:["402.7K","402.7 ألف"],l:["85K","85 ألف"],u:"https://vt.tiktok.com/ZSpM42vjb/",pv:"bb"},
-  {t:["Football","كرة القدم"],h:["",""],v:["231.3K","231.3 ألف"],l:["58K","58 ألف"],u:"https://vt.tiktok.com/ZSpM48S6a/",img:"c3"}
+  {t:["Haircare","العناية بالشعر"],h:["A shampoo bottle, then the northern lights.","زجاجة شامبو ثم فجأة… شفق قطبي."],v:["",""],l:["",""],u:"assets/shamp.mp4",pv:"sh",po:"assets/shamp.jpg"},
+  {t:["Lifestyle","نمط حياة"],h:["",""],v:["",""],l:["",""],u:"assets/cafe.mp4",pv:"cf",po:"assets/cafe.jpg"}
  ]
 };
 /* الشريط السفلي «فيديوهات من عالم آخر»: الفيديو الأول مكان فيديو التعريف القديم، والثاني في منتصف الشريط */
 C.rail=[
- {t:["Transitions","انتقالات"],h:["A cinematic transition.","انتقال سينمائي."],v:["",""],l:["",""],u:"assets/tr04.mp4",pv:"r1",po:"assets/tr04.jpg"},
+ {t:["Transitions","انتقالات"],h:["A cinematic transition.","انتقال سينمائي."],v:["",""],l:["",""],u:"assets/pend4.mp4",pv:"r1",po:"assets/pend4.jpg"},
  C.vids[1],C.vids[2],
  {t:["Transitions","انتقالات"],h:["From the face to the pendant.","من الوجه إلى القلادة."],v:["",""],l:["",""],u:"assets/r02.mp4",pv:"r2",po:"assets/r02.jpg"},
- C.vids[3],C.vids[4]
+ C.vids[3],C.vids[4],C.vids[5]
 ];
 /* ================================== */
 const $=s=>document.querySelector(s),clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
@@ -483,7 +484,7 @@ snapchat:'M12 3c3 0 5 2.200 5 5v2c.5.300 1.300.4 2 .6-.2.800-.8 1-1.700 1.200.5 
 facebook:'M14 8V6.500c0-.7.200-1 1.200-1H17V2h-2.800C11 2 10 4 10 6.200V8H8v3.200h2V22h4v-10.800h2.700L17 8z'};
 const svg=k=>`<svg viewBox="0 0 24 24"><path d="${ic[k]}"/></svg>`;
 
-const PV={r1:"assets/tr04.mp4",r2:"assets/r02.mp4",tr:"assets/tr04.mp4",bb:"assets/e406638b01.mp4",garnier:"assets/83c7732c05.mp4"};
+const PV={r1:"assets/pend4.mp4",r2:"assets/r02.mp4",tr:"assets/pend4.mp4",sh:"assets/shamp.mp4",cf:"assets/cafe.mp4",bb:"assets/e406638b01.mp4",garnier:"assets/83c7732c05.mp4"};
 const AR={"Welcome! We are so happy you are visiting the Atab website. Are you interested in the transition courses, or a complete, comprehensive course to set up your new website and market your products?": "أهلا بك نحن سعداء جداً بزيارتك في موقع عتب هل انت مهتم بالدورات الانتقاليه ام دورة كاملة شاملة لتجهيز موقعك الجديد وتسوق منتجاتك", "Complete the dream.": "كمل الحلم", "Calculated": "حسبناها", "before execution.": "قبل التنفيذ", "This is madness,": "عالم", "not editing.": "آخر", "This face": "أول مؤثر عربي", "no one forgets.": "في الانتقالات.","Highlights": "أبرز الأعمال", "Four films.": "أربعة أفلام", "One reaction.": "ردّ فعل واحد", "Every industry": "كل مجال", "Different worlds.": "عوالم مختلفة", "The same reaction.": "ردّ الفعل نفسه", "Views of a single video, summed across platforms.": "مشاهدات فيديو واحد مجمّعة عبر المنصات.","Learn":"تعلّم","the method.":"الطريقة","Videos people": "فيديوهات", "choose to watch.": "يختار الناس مشاهدتها", "Your idea. Worth watching.": "فكرتك تستحق المشاهدة", "Transitions people never forget": "انتقالات لا ينساها أحد", "Cinematic transition videos that turn any moment into a story.": "فيديوهات انتقالية سينمائية تحوّل أي لحظة إلى قصة", "One moment, two worlds.": "لحظة من وقتك تثير الجدل", "A cut that opens an everyday scene into something else.": "قطعة تفتح مشهدًا عاديًا على عالم آخر", "Imagination, on screen.": "الخيال على الشاشة", "Whatever you picture becomes a film.": "كل ما تتخيله يصبح فيلمًا", "Made to be": "صُنعت", "watched.": "لتُشاهَد", "Every industry": "كل مجال", "Different worlds.": "عوالم مختلفة", "One signature.": "بصمة واحدة", "Skincare": "عناية بالبشرة", "Fragrance": "عطور", "Beauty": "تجميل", "Football": "كرة القدم", "Cars": "سيارات", "Fashion": "أزياء", "Tech": "تقنية", "Lifestyle": "نمط حياة","Behind the camera":"ما وراء الواقع","This content is educational and creative. No results or profits are guaranteed. All trademarks belong to their owners.":"المحتوى تعليمي وإبداعي، ولا يتضمن أي ضمان لنتائج أو أرباح. جميع العلامات التجارية تعود لأصحابها.","Let’s talk ↗": "كلّمني ↖", "Explore the work": "شاهد أعمالي", "You’re on the right track.": "أنت على الطريق الصحيح", "Create your company and talk to me, I’ll develop it for you.": "أنشئ شركتك وكلمني أطورها لك", "Scroll to transform": "مرّر لتشاهد السحر", "Beyond Reality": "ما وراء الواقع", "BEYOND REALITY": "ما وراء الواقع", "followers on TikTok": "متابع على تيك توك", "likes on TikTok": "إعجاب على تيك توك", "views on 4 featured videos": "مشاهدة على 4 فيديوهات مميّزة", "Find me on": "تجدني على", "Selected videos": "أعمال تتحدث عن نفسها", "We develop companies": "نعمل على تطوير الشركات", "and take your idea to the audience at the highest level, until it goes global.": "ونوصل فكرتك للجمهور بأعلى صورة حتى تصل للعالمية", "Make your project stand out": "ميّز مشروعك", "We make transition videos that others never forget, for your company.": "نحن نعمل على فيديوهات انتقالية لا ينساها الآخرون لشركتك", "Choose the system you work with.": "اختر لك نظامًا تعمل به", "We take care of preparing everything.": "نحن نقوم بتجهيز كل شيء", "Reach on a different scale.": "وصول بحجم آخر", "Short videos built to travel across every platform.": "فيديوهات قصيرة تنتقل عبر كل المنصات.", "We work on everything from A to Z.": "نعمل على كل شيء من الألف إلى الياء", "Whatever you imagine, you will find it with us in reality.": "حسب ما تفكّر، الخيال تجده معنا في الواقع", "Do you have a product": "هل عندك منتج", "or a project, company, institution or store?": "أو مشروع، شركة، مؤسسة، متجر؟", "Do you want to learn to produce": "هل تريد تعلّم الإنتاج", "or need our help?": "أو تحتاج مساعدتنا؟", "My website": "موقعي", "Courses": "الكورسات", "Course": "كورس", "Transition course": "كورس الانتقالات", "SWC course": "كورس SWC", "My own editing method: edits, transitions, and the “magic product” videos.": "طريقتي في المونتاج: انتقالات سينمائية وفيديوهات «المنتج السحري».", "Digital products and the marketing funnel.": "المنتجات الرقمية وقمع التسويق.", "Get the course": "ابدأ الكورس", "Made for you": "صنعت لك", "you just choose. We’re on it.": "فقط أنت اختر، ونحن قيد التنفيذ", "Scroll down": "مرّر للأسفل", "Your next campaign": "حملتك القادمة", "Let’s create": "لنصنع", "something worth watching.": "شيئًا يستحق المشاهدة", "Attach your full details. We will review them as soon as possible. Just wait for our reply by email or WhatsApp.": "أرفق بياناتك كاملة، نحن نراجعها لك في أقرب وقت ممكن، فقط انتظر منا الرد عبر الإيميل أو الواتساب.", "WhatsApp": "كلّمني واتساب", "Send message": "أرسل رسالتك", "Your details are only used to reply to your enquiry.": "تُستخدم بياناتك للرد على رسالتك فقط.", "Your product": "منتجك", "The starting point": "نقطة البداية", "Name": "الاسم", "Company": "شركتك أو البراند", "Email": "الإيميل", "Message": "حدّثنا عن مشروعك"};
 let L='ar';try{L=localStorage.getItem('l')||L}catch(e){}
 const t=a=>a[L==='ar'?1:0];
@@ -587,12 +588,18 @@ const hv=$('#hv');let vt=0,cur=0;
 (function lp(){cur+=(vt-cur)*.3;if(!hv.seeking&&hv.readyState>1&&Math.abs(cur-hv.currentTime)>.015)hv.currentTime=cur;requestAnimationFrame(lp)})();
 const wake=()=>{hv.play().then(()=>hv.pause()).catch(()=>{});};hv.addEventListener('loadeddata',wake,{once:true});addEventListener('touchstart',wake,{once:true,passive:true});
 const zc=$('.zc'),zo=$('.zo'),hero=$('#hero'),por=$('#portrait'),ht=$('#htxt'),sc=$('#scene'),car=$('#car'),btn=$('#btn'),s1=$('#sc1'),fog=$('#fog'),fg=$('#fg');
+/* sc1: smooth, slow glide in (eased + inertia) like the rest of the site */
+let s1t=0,s1c=0,s1run=false;const S1F='drop-shadow(0 1px 0 #6e3811) drop-shadow(0 2px 0 #52290c) drop-shadow(0 10px 12px #000b)';
+function s1Step(){s1c+=(s1t-s1c)*.05;if(Math.abs(s1t-s1c)<.002)s1c=s1t;const e=s1c,b=(1-e)*12;
+ s1.style.opacity=e.toFixed(3);s1.style.transform=`translateY(${((1-e)*70).toFixed(1)}px) scale(${(.95+.05*e).toFixed(3)})`;
+ s1.style.filter=b>.05?`blur(${b.toFixed(1)}px) ${S1F}`:'';
+ if(s1c!==s1t)requestAnimationFrame(s1Step);else s1run=false}
 function tick(){const vh=innerHeight,r=hero.getBoundingClientRect(),p=clamp(-r.top/(hero.offsetHeight-vh));
  $('#hb').style.setProperty('--pp',p);
  ht.style.opacity=1-clamp(p/.1);ht.style.transform=`translateY(${-p*140}px)`;
  $('#cue').style.opacity=1-clamp(p/.05);sc.style.opacity=1;
  vt=p*(hv.duration||3.04);
- const t1=clamp((p-.8)/.08);s1.style.opacity=t1;s1.style.transform=`translateY(${(1-t1)*30}px)`;
+ const q1=clamp((p-.7)/.3);s1t=q1*q1*(3-2*q1);if(RM){s1c=s1t;s1Step()}else if(!s1run){s1run=true;requestAnimationFrame(s1Step)}
   // fog gallery
  const fr=fog.getBoundingClientRect(),m=clamp(1-(fr.top+vh*.1)/(vh*1.1));
  fg.style.transform='none';
