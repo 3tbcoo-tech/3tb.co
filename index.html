@@ -319,6 +319,14 @@ h2.rv{transform:translateY(60px)}h2.rv.in{transform:none}
  background:linear-gradient(172deg,#ffd9b0 0%,#f0a868 24%,#c97a3c 50%,#8f4c1c 74%,#d99357 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
  filter:drop-shadow(0 1px 0 #6e3811) drop-shadow(0 2px 0 #52290c) drop-shadow(0 10px 12px #000b)}
 [dir=rtl] .sc1{right:auto!important;left:22px!important;text-align:left!important}
+
+/* video cards: endless marquee */
+#videos .ctl{display:none!important}
+#rail.rail{overflow:hidden!important;scroll-snap-type:none!important}
+#rail .hang{transform:none!important;opacity:1!important;transition:none;will-change:translate;animation:rmq var(--rd,60s) linear infinite}
+@keyframes rmq{from{translate:0 0}to{translate:calc(var(--sw,0px)*var(--dirm,-1)) 0}}
+#rail.hold .hang{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){#rail .hang{animation:none}#rail.rail{overflow-x:auto!important}}
 </style>
 </head>
 <body>
@@ -550,7 +558,7 @@ $('#lang').onclick=()=>apply(L==='ar'?'en':'ar');
 /* rail arrows */
 const rail=$('#rail'),NV=C.rail.length,stp=()=>(rail.firstElementChild?rail.firstElementChild.offsetWidth+10:300)*(L==='ar'?-1:1);
 $('#nx').onclick=()=>rail.scrollBy({left:stp(),behavior:'smooth'});$('#pv').onclick=()=>rail.scrollBy({left:-stp(),behavior:'smooth'});
-rail.addEventListener('scroll',()=>{$('#cnt').textContent=String(Math.min(NV,Math.round(Math.abs(rail.scrollLeft)/Math.abs(stp()))+1)).padStart(2,'0')},{passive:true});
+rail.addEventListener('scroll',()=>{$('#cnt').textContent=String((Math.round(Math.abs(rail.scrollLeft)/pitchF())%NV)+1).padStart(2,'0')},{passive:true});
 let ang=0,av=0,lsl=0,lsy=0,vis=true;const hsw=document.getElementById('hsw');document.getElementById('hcw').addEventListener('click',e=>{const b=e.target.closest('.hc');if(b&&b.dataset.v)openV(b.dataset.v)});
 function cover(now){const r=rail.getBoundingClientRect(),cx=r.left+r.width/2,tm=(now||performance.now())/1000;
  rail.querySelectorAll('.hang').forEach((el,i)=>{const w=el.offsetWidth,b=el.getBoundingClientRect(),d=(b.left+b.width/2-cx)/w,a=Math.min(Math.abs(d),2);
@@ -559,11 +567,20 @@ function cover(now){const r=rail.getBoundingClientRect(),cx=r.left+r.width/2,tm=
 let lt=0;function swing(now){const dt=Math.min(2.5,lt?(now-lt)/16.67:1);lt=now;const sl=rail.scrollLeft,sy=scrollY;av+=(-(sl-lsl)*.008+(sy-lsy)*.003)*Math.min(dt,1.5);lsl=sl;lsy=sy;av+=(-.06*ang-.085*av)*dt;ang=Math.max(-12,Math.min(12,ang+av*dt));if(vis&&!RM)cover(now);hsw.style.setProperty('--a',(ang*.6).toFixed(2)+'deg');requestAnimationFrame(swing)}
 new IntersectionObserver(es=>{vis=es[0].isIntersecting},{rootMargin:'120px'}).observe(rail);
 rail.addEventListener('scroll',()=>cover(),{passive:true});addEventListener('resize',()=>cover());lsl=rail.scrollLeft;lsy=scrollY;requestAnimationFrame(swing);
-/* video cards: move on their own to the next card (pauses while the visitor touches/drags) */
-let rAuto=Date.now();['pointerdown','touchstart','wheel','keydown'].forEach(e=>rail.addEventListener(e,()=>{rAuto=Date.now()},{passive:true}));
-setInterval(()=>{if(RM||!vis||document.hidden||Date.now()-rAuto<4500)return;
- const k=rail.children,pitch=k.length>1?Math.abs(k[1].offsetLeft-k[0].offsetLeft):Math.abs(stp()),i=Math.round(Math.abs(rail.scrollLeft)/pitch);
- if(i>=NV-1)rail.scrollTo({left:0,behavior:'smooth'});else rail.scrollBy({left:stp(),behavior:'smooth'})},3200);
+/* video cards: endless marquee driven by CSS (GPU, never stutters). Press & hold = pause. */
+function pitchF(){const k=rail.children;return k.length>1?Math.abs(k[1].offsetLeft-k[0].offsetLeft):Math.abs(stp())}
+cover=function(){};
+rail.addEventListener('pointerdown',()=>rail.classList.add('hold'));
+['pointerup','pointercancel','pointerleave'].forEach(e=>rail.addEventListener(e,()=>rail.classList.remove('hold')));
+const vio=('IntersectionObserver' in window)?new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){const p=v.play();if(p&&p.catch)p.catch(()=>{})}else v.pause()}),{rootMargin:'0px 200px 0px 200px'}):null;
+let rSw='',rDir='';
+function railSync(){
+ const hs=rail.querySelectorAll('.hang');
+ if(hs.length&&!rail.querySelector('[data-cl]')){[...hs].forEach(h=>{const c=h.cloneNode(true);c.setAttribute('data-cl','1');c.setAttribute('aria-hidden','true');rail.appendChild(c)})}
+ const sw=pitchF()*NV,d=document.documentElement.dir==='rtl'?1:-1;
+ if(sw>0&&(sw+'px'!==rSw||d!==rDir)){rSw=sw+'px';rDir=d;rail.style.setProperty('--sw',rSw);rail.style.setProperty('--rd',(sw/40).toFixed(1)+'s');rail.style.setProperty('--dirm',d)}
+ if(vio)rail.querySelectorAll('video').forEach(v=>{if(!v.__o){v.__o=1;v.muted=true;vio.observe(v)}})}
+setInterval(railSync,600);setTimeout(railSync,50);
 /* ===== counters ===== */
 const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){cio.unobserve(e.target);runCount(e.target)}}),{threshold:.35});
