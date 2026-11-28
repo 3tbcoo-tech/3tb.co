@@ -442,9 +442,7 @@ h2.rv{transform:translateY(60px)}h2.rv.in{transform:none}
   <div class="cue" id="cue"><span>Scroll down</span><i>↓</i></div>
   <div class="htxt" id="htxt">
    <h1 class="nm"><span id="n1" style="-webkit-text-stroke:0;color:inherit;text-align:left">عتب</span><span class="dot"></span><span id="n2">3TB</span></h1>
-   <p class="tg" id="tag">Beyond Reality</p>
    <button class="go" data-go="#videos">Explore the work <i>↗</i></button>
-   <a class="hcta" href="#products"><span class="hk">New</span><span>Learn how I make my films</span><i>↓</i></a>
   </div>
   <div class="scene" id="scene">
    <div class="cloth"></div><div class="zip"><i class="zo"></i><i class="zc"></i></div>
@@ -506,8 +504,6 @@ h2.rv{transform:translateY(60px)}h2.rv.in{transform:none}
 
 <section><div class="w">
  <div class="pol rv" id="pol"><div data-p=".10"><i></i></div><div data-p="-.05"><i></i></div><div data-p=".16"><i></i></div></div>
- <h2 class="rv h2s">Behind the camera</h2>
- <p class="sub rv" id="bio"></p>
  <a class="ag" id="ag" href="https://3tbco.com" target="_blank" rel="noopener"><div><p class="eb" style="margin:0">My website</p><h4 style="font-size:clamp(20px,5.6vw,34px)">3TBCO.COM</h4></div><span style="color:var(--ac);font-size:34px">↗</span></a>
 </div></section>
 
@@ -701,7 +697,7 @@ function cvGo(i){const V=C.vids;cvI=(i+V.length)%V.length;const v=V[cvI],ar=L===
  const m=v.img?`<i style="background-image:var(--${v.img})"></i>`:`<video src="${PV[v.pv]}" muted loop playsinline autoplay></video>`;
  $('#cvb').innerHTML=`<div class="cvp"><div class="pst">${m}</div><div><small>${t(v.t)}</small><h3>${t(v.h)||t(v.t)}</h3><a href="${v.u}" target="_blank" rel="noopener">${ar?'شاهد الفيديو':'Watch the video'} ↗</a></div></div><div class="cvn">${f(num)}</div><div class="cvl">${ar?'إجمالي المشاهدات':'Total views'}</div>`+sh.map(p=>`<div class="cvr"><div><span>${ar?p[1]:p[0]}</span><span>${f(num*p[2])} <em>${Math.round(p[2]*100)}%</em></span></div><i><b style="width:${p[2]*100}%"></b></i></div>`).join('')+`<p class="sub" style="font-size:12px">${ar?'إجمالي المشاهدات على المنصات وليس عدد المشاهدين الفريدين.':'Platform totals, not unique viewers.'}</p>`}
 function render(){extra();
- $('#n1').textContent=C.first;$('#n2').textContent=C.last;$('#tag').textContent=t(C.tag);$('#bio').textContent=t(C.bio);
+ $('#n1').textContent=C.first;$('#n2').textContent=C.last;if($('#tag'))$('#tag').textContent=t(C.tag);if($('#bio'))$('#bio').textContent=t(C.bio);
  $('#soc').innerHTML=$('#fs').innerHTML=Object.keys(C.social).map(k=>`<a href="${C.social[k]}" aria-label="${k}" target="_blank" rel="noopener">${svg(k)}</a>`).join('');
  if($('#brands'))$('#brands').innerHTML=[...C.brands,...C.brands].map(b=>`<span>${b}</span>`).join('');
  (function(){const F=window.FANS||[],f=$('#fans');if(f)f.innerHTML=F.map(u=>`<i${u?` style="background-image:url('${u}')"`:''}></i>`).join('')})();
