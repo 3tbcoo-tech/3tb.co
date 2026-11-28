@@ -554,7 +554,7 @@ h2.rv{transform:translateY(60px)}h2.rv.in{transform:none}
 <script>
 /* أعمالي · الشروحات — لإضافة عمل جديد: زوّد سطر في القائمة دي */
 window.WORKS=[
- {v:"assets/w-car.mp4",p:"assets/w-car.jpg",t:["Birds Transition","ترانزيشن الطيور"],d:["A white plate turns into a flock of birds over the beach.","صحن أبيض يتحوّل لسرب طيور فوق الشاطئ."],m:["4 lessons · 10 min · Arabic & English subtitles","4 دروس · 10 دقايق · ترجمة عربي وإنجليزي"],u:"https://3tbco.gumroad.com/l/csogohk"}
+ {v:"assets/w-car.mp4",p:"assets/w-car.jpg",tag:["Courses","الكورسات"],t:["3TB Courses","كورسات عتب • 3TB"],d:["Learn the cinematic transitions you see in my work, step by step.","اتعلّم الترانزيشن السينمائي اللي بتشوفه في أعمالي، خطوة بخطوة."],m:["Full tutorials · Arabic & English subtitles","شروحات كاملة · ترجمة عربي وإنجليزي"],c:["View courses ↗","شوف الكورسات ↖"],u:"https://3tbco.gumroad.com"}
 ];
 (function(){
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -562,7 +562,7 @@ window.WORKS=[
   var el=document.getElementById("wks");if(!el)return;
   var ar=document.documentElement.lang==="ar",k=ar?1:0;
   var html=(window.WORKS||[]).map(function(w,i){
-   return '<a class="wk" href="'+esc(w.u)+'" target="_blank" rel="noopener"><video muted loop playsinline autoplay preload="metadata" poster="'+esc(w.p)+'" src="'+esc(w.v)+'"></video><span class="wk-tag">'+(ar?"شرح كامل":"Full tutorial")+'</span><div class="wk-b"><small>'+String(i+1).padStart(2,"0")+'</small><b>'+esc(w.t[k])+'</b><p>'+esc(w.d[k])+'</p><i>'+esc(w.m[k])+'</i><em>'+(ar?"اتعلّم إزاي اتعمل ↖":"Learn how it’s made ↗")+'</em></div></a>';
+   return '<a class="wk" href="'+esc(w.u)+'" target="_blank" rel="noopener"><video muted loop playsinline autoplay preload="metadata" poster="'+esc(w.p)+'" src="'+esc(w.v)+'"></video><span class="wk-tag">'+esc(w.tag?w.tag[k]:(ar?"شرح كامل":"Full tutorial"))+'</span><div class="wk-b"><b>'+esc(w.t[k])+'</b><p>'+esc(w.d[k])+'</p><i>'+esc(w.m[k])+'</i><em>'+esc(w.c?w.c[k]:(ar?"اتعلّم إزاي اتعمل ↖":"Learn how it’s made ↗"))+'</em></div></a>';
   }).join("");
   html+='<div class="wk wk-soon"><div><s>✦</s><b>'+(ar?"العمل الجاي":"Next film")+'</b><p>'+(ar?"كل فيلم جديد بينزل معاه شرحه هنا.":"Every new film I post gets its own tutorial here.")+'</p></div></div>';
   el.innerHTML=html;
